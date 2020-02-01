@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { onSubmit } from '../redux/actions/onSubmit'
 
+import Modal from "./Modal";
+
 class Form extends React.Component {
   constructor() {
     super()
@@ -45,31 +47,31 @@ class Form extends React.Component {
       popupIsVisible: false
     })
 
-    // console.log("popupIsVisible", this.state.popupIsVisible)
+     //console.log("serverResponse", this.state.serverResponse)
   }
 
   submitUserForm(e) {
     e.preventDefault()
+    e.target.reset();
+
 
     // this.validateForm()
-    // this.postUser()
-
+     this.postUser()
     // if (this.validateForm()) {
-
-    //this.postUser()
-
-    this.setState({
-      popupIsVisible: true
-    })
+    //   this.postUser()
     // }
 
-    // console.log(this.state.token)
+    // this.state.serverResponse.forEach(function(item, i, arr) {
+    //   console.log( i + ": " + item + " (массив:" + arr + ")" );
+    // })
+
+     console.log(this.state.serverResponse)
   }
 
   validateForm() {
     const fields = this.state.fields
     const errors = {}
-    let formIsValid = true
+    const formIsValid = true
     const avatar = this.state.selectedFile
 
     if (typeof fields.positions === 'undefined') {
@@ -205,39 +207,69 @@ class Form extends React.Component {
   }
 
   postUser() {
-    console.log(this.state.fields)
+    //console.log(this.state.fields)
     const formData = new FormData()
-    formData.append('position_id', 2)
+    formData.append('position_id', this.state.fields.positions)
     formData.append('name', this.state.fields.username)
     formData.append('email', this.state.fields.email)
     formData.append('phone', this.state.fields.mobile)
     formData.append('photo', this.state.selectedFile)
 
     fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Token: this.state.token // get token with GET api/v1/token method
-      }
-    })
+        method: 'POST',
+        body: formData,
+        headers: {
+          Token: this.state.token // get token with GET api/v1/token method
+        }
+      })
       .then(responseText => responseText.json())
-      .then(data =>
+      .then(data => {
        
-       // console.log(data.fails)
+        console.log(data)
 
          
         
 
         this.setState({
-          serverResponse: data.fails
+          serverResponse: data
         })
+
+        // this.setState({
+        //   popupIsVisible: true
+        // })
+
+
+       
 
         // if (data.success) {
         //   //
         // } else {
         //   // proccess server errors
         // }
+      }
       )
+      .then(data => {
+
+        this.setState({
+          popupIsVisible: true
+        })
+
+
+        //console.log(Date.now().valueOf());
+
+
+         if (this.state.serverResponse.success) {
+                
+                this.props.onSubmit(Date.now().valueOf())
+                this.setState({
+                  fields: ''
+                })
+
+        } else {
+                 
+        }
+
+      })
 
     // .then(function (response) {
     //   return this.props.onSubmit(true)
@@ -254,30 +286,7 @@ class Form extends React.Component {
   }
 
   render() {
-    // if (this.state.popupIsVisible) {
-    //   return (
-    //     <div className="modal" tabIndex="-1" role="dialog">
-    //       <div className="modal-dialog" role="document">
-    //         <div className="modal-content">
-    //           <div className="modal-header">
-    //             <h5 className="modal-title">Modal title</h5>
-    //             <button
-    //               type="button"
-    //               className="close"
-    //               data-dismiss="modal"
-    //               aria-label="Close"
-    //             >
-    //               <span aria-hidden="true">&times;</span>
-    //             </button>
-    //           </div>
-    //           <div className="modal-body">
-    //             <p>Modal body text goes here.</p>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   )
-    // }
+
 
     return (
       <React.Fragment>
@@ -302,7 +311,7 @@ class Form extends React.Component {
               placeholder="Your name"
             />
             <div className="errorMsg"> {this.state.errors.username} </div>
-            {console.log(this.state.errors.username)}
+            {/* {console.log(this.state.errors.username)} */}
           </div>
           <div
             className={`col-md-4 form_email ${this.errorClass(this.state.errors.email)}`}
@@ -361,31 +370,9 @@ class Form extends React.Component {
           <input type="submit" className="btn btn-disable" value="Register" />
         </form>
 
-        {this.state.popupIsVisible ? (
-          <div className="modal" tabIndex="-1" role="dialog">
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">Modal title</h5>
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                    onClick={this.handleCloseModal}
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  <p>{(this.state.serverResponse)}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <></>
-        )}
+        <Modal show={this.state.popupIsVisible} onClose={this.handleCloseModal} content={this.state.serverResponse}></Modal>
+
+        
       </React.Fragment>
     )
   }

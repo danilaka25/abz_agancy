@@ -32,13 +32,15 @@ class Users extends React.Component {
       this.setState(
         {
           // reload: true,
-          toDisplay: 6
+          toDisplay: 6,
+          page: 0
         },
         () => {
           this.getJson()
         }
       )
     } else {				
+      console.log('btn load more not clicked')
     //this.setState({ 
     //reload: false
     //})  
