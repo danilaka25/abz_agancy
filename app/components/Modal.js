@@ -11,23 +11,7 @@ export default class Modal extends React.Component {
     if (!this.props.show) {
       return null;
     }
-
-    // if (!this.props.content.success) {
-    // const petList = Object.entries(this.props.content.fails).map(([key,value])=>{
-    //     return (
-    //         <div key={key}>{value.toString()}</div>
-    //     )       
-    // })
-    // } else {
-    //     const petList = () => {
-    //         return (
-    //             <div>123</div>
-    //         ) 
-
-    //     }
-
-    // }
-    
+  
     return (
         <div className="modal" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">

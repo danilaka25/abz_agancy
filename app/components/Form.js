@@ -24,7 +24,7 @@ class Form extends React.Component {
   }
 
   handleChangeInput(e) {
-    const fields = this.state.fields
+    let fields = this.state.fields
     fields[e.target.name] = e.target.value
     this.setState({
       fields
@@ -32,12 +32,9 @@ class Form extends React.Component {
   }
 
   handleChangeFile(event) {
-    // let files = this.state.files;
-    // files[e.target.name] = e.target.value;
     this.setState({
       selectedFile: event.target.files[0]
     })
-    // console.log(event.target.files[0].size)
   }
 
   handleCloseModal(e) {
@@ -47,32 +44,29 @@ class Form extends React.Component {
       popupIsVisible: false
     })
 
-     //console.log("serverResponse", this.state.serverResponse)
   }
 
   submitUserForm(e) {
     e.preventDefault()
-    e.target.reset();
+    //e.target.reset();
 
 
-    // this.validateForm()
-     this.postUser()
+     this.validateForm()
+    // this.postUser()
     // if (this.validateForm()) {
     //   this.postUser()
     // }
 
-    // this.state.serverResponse.forEach(function(item, i, arr) {
-    //   console.log( i + ": " + item + " (массив:" + arr + ")" );
-    // })
+     
 
      console.log(this.state.serverResponse)
   }
 
   validateForm() {
-    const fields = this.state.fields
-    const errors = {}
-    const formIsValid = true
-    const avatar = this.state.selectedFile
+    let fields = this.state.fields
+    let errors = {}
+    let formIsValid = true
+    let avatar = this.state.selectedFile
 
     if (typeof fields.positions === 'undefined') {
       formIsValid = false
@@ -197,7 +191,7 @@ class Form extends React.Component {
 
         let options = positionsList
 
-        for (const key in options) {
+        for (let key in options) {
           const option = document.createElement('option')
           option.value = options[key].id
           option.text = options[key].name
@@ -255,25 +249,24 @@ class Form extends React.Component {
         })
 
 
-        //console.log(Date.now().valueOf());
+        this.props.onSubmit(Date.now().valueOf())
 
-
-         if (this.state.serverResponse.success) {
                 
-                this.props.onSubmit(Date.now().valueOf())
-                this.setState({
-                  fields: ''
-                })
 
-        } else {
-                 
-        }
+        //  if (this.state.serverResponse.success) {
+                
+        //         this.props.onSubmit(Date.now().valueOf())
+        //         this.setState({
+        //           fields: ''
+        //         })
+        // } 
+
+
+
 
       })
 
-    // .then(function (response) {
-    //   return this.props.onSubmit(true)
-    // })
+  
   }
 
   componentDidMount() {
@@ -287,10 +280,11 @@ class Form extends React.Component {
 
   render() {
 
+    //console.log(this.state.errors)
 
     return (
       <React.Fragment>
-        
+        <Modal show={this.state.popupIsVisible} onClose={this.handleCloseModal} content={this.state.serverResponse}></Modal>
         <form
           method="post"
           name="userRegistrationForm"
@@ -298,7 +292,7 @@ class Form extends React.Component {
           className="row"
         >
           <div
-            className={`col-md-4 form_name ${this.errorClass(
+            className={`form_name ${this.errorClass(
               this.state.errors.username
             )}`}
           >
@@ -313,8 +307,9 @@ class Form extends React.Component {
             <div className="errorMsg"> {this.state.errors.username} </div>
             {/* {console.log(this.state.errors.username)} */}
           </div>
+         
           <div
-            className={`col-md-4 form_email ${this.errorClass(this.state.errors.email)}`}
+            className={`form_email ${this.errorClass(this.state.errors.email)}`}
           >
             <label> Email </label>
             <input
@@ -326,8 +321,9 @@ class Form extends React.Component {
             />
             <div className="errorMsg"> {this.state.errors.mobile} </div>
           </div>
+         
           <div
-            className={`col-md-4 form_phone ${this.errorClass(this.state.errors.email)}`}
+            className={`form_phone ${this.errorClass(this.state.errors.email)}`}
           >
             <label> Mobile </label>
             <input
@@ -340,7 +336,7 @@ class Form extends React.Component {
             <div className="errorMsg"> {this.state.errors.mobile} </div>
           </div>
 
-          <div className="col-md-6 form_position">
+          {/* <div className="form_position">
             <select
               id="inputPosition"
               name="positions"
@@ -348,9 +344,29 @@ class Form extends React.Component {
               onChange={this.handleChangeInput}
             ></select>
             <div className="errorMsg"> {this.state.errors.positions} </div>
+          </div> */}
+
+
+          <div className="form_position">
+            <label className="position_item">One
+              <input type="radio" name="position" />
+              <span className="checkmark"></span>
+            </label>
+            <label className="position_item">Two
+              <input type="radio" name="position" />
+              <span className="checkmark"></span>
+            </label>
+            <label className="position_item">Three
+              <input type="radio" name="position" />
+              <span className="checkmark"></span>
+            </label>
+            <label className="position_item">Four
+              <input type="radio" name="position" />
+              <span className="checkmark"></span>
+            </label>
           </div>
 
-          <div className="col-md-6 form_upload">
+          <div className="form_upload">
             <div className="inputfile-box">
               <div className="file-box">Upload your photo </div>
               <label className="file-button">
@@ -366,13 +382,8 @@ class Form extends React.Component {
             </div>
             <div className="errorMsg"> {this.state.errors.password} </div>
           </div>
-
           <input type="submit" className="btn btn-disable" value="Register" />
-        </form>
-
-        <Modal show={this.state.popupIsVisible} onClose={this.handleCloseModal} content={this.state.serverResponse}></Modal>
-
-        
+        </form>  
       </React.Fragment>
     )
   }

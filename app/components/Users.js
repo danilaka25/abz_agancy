@@ -1,27 +1,24 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { onSubmit } from '../redux/actions/onSubmit'
 
 class Users extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
-    // CONST
-    this.API =
-      'https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count='
+   
+    this.API = 'https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count='
     this.DEFAULT_QUERY = 6
 
     this.state = {
       hits: [],
       page: 0,
-      reload: false,
-      toDisplay: 6
+      reload: this.props.formData.reload,
+      toDisplay: this.DEFAULT_QUERY
     }
 
     this.loadMoreUsers = this.loadMoreUsers.bind(this)
   }
 
-  componentDidUpdate (prevProps) {
-    // console.log('this.props.formData.reload', this.props.formData.reload)
+  componentDidUpdate = (prevProps) => {
     if (prevProps.formData.reload === this.props.formData.reload) {
       return
     }
@@ -31,23 +28,17 @@ class Users extends React.Component {
 
       this.setState(
         {
-          // reload: true,
-          toDisplay: 6,
+          toDisplay: this.DEFAULT_QUERY,
           page: 0
         },
         () => {
           this.getJson()
         }
       )
-    } else {				
-      console.log('btn load more not clicked')
-    //this.setState({ 
-    //reload: false
-    //})  
     }
   }
 
-  getJson () {
+  getJson = () => {
     fetch(this.API + this.state.toDisplay)
       .then(response => response.json())
       .then(data =>
@@ -59,56 +50,50 @@ class Users extends React.Component {
       )
   }
 
-  componentDidMount () {
+  componentDidMount = () => {
     this.getJson()
   }
 
-  loadMoreUsers () {
-    this.setState({
-      reload: false
-    })
-
-    this.props.onSubmit(false)
-
-    //this.DEFAULT_QUERY = this.DEFAULT_QUERY + 6 ;
+  loadMoreUsers = () => {
 
     this.setState(
       {
-        toDisplay: this.state.toDisplay + 6
+        toDisplay: this.state.toDisplay + this.DEFAULT_QUERY
       },
       () => {
         this.getJson()
       }
     )
 
-    const { page } = this.state
-    const { pagetotal } = this.state
-    // не вышли за количество страниц
-    if (this.state.page >= this.state.pagetotal - 6) {
+    const { page, pagetotal } = this.state
+    if (this.state.page >= this.state.pagetotal - this.DEFAULT_QUERY) { // did not go beyond out
       var elem = document.querySelector('#more')
       elem.classList.add('btn-disable');
       elem.setAttribute('disabled', 'disabled')
     }
   }
 
-  render () {
-    //console.log("render Users");
-    console.log('toDisplay', this.state.toDisplay)
 
+  formatPhone = (phone) => {
+    return phone.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, "$1 ($2) $3-$4-$5")
+  }
+
+  
+
+  render = () => {
     const { hits } = this.state
-
     return (
       <React.Fragment>
         <div className="users__list">
           {hits.map(hit => (
             <div className="users__item" id={hit.id} key={hit.id}>
-              <div className="users__avatar" style={{ backgroundImage: `url(${hit.photo})`  }}>
+              <div className="users__avatar" style={{ backgroundImage: `url(${hit.photo})` }}>
               </div>
               <div className="users__description">
                 <div className="users__name">{hit.name.slice(0, 45)}</div>
                 <div className="users__position">{hit.position}</div>
-                <div>{hit.email.slice(0, 15)}</div>
-                <div>{hit.phone}</div>
+                <div className="users__email" data-toggle="tooltip" data-placement="bottom" title={hit.email}>{hit.email.slice(0, 15)}</div>
+                <div className="users__phone">{this.formatPhone(hit.phone)}</div>
               </div>
             </div>
           ))}
@@ -128,10 +113,7 @@ class Users extends React.Component {
 const UsersContainer = connect(
   state => ({
     formData: state.formReducer
-  }),
-  {
-    onSubmit
-  }
+  })
 )(Users)
 
 export default UsersContainer

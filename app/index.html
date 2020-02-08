@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>React Webpack Babel Starter Kit</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
   <link rel="icon" type="image/png" sizes="24x24" href="/icons/favicon-32x32.png">
   <link rel="shortcut icon" sizes="192x192" href="/icons/shortcut-192x192.png" type="image/png">
@@ -10,25 +13,20 @@
 </head>
 <body>
 
-<header class="header" data-spy="affix" data-offset-top="197">
+<header class="header" >
 		
 		<div class="container">
-			<div class="row">
+			
 
-			<!-- 	<div class="col col-2">
-					<div class="header__logo"><img src="/svg/logo.svg"></div>
-				</div> -->
-
-				<div class="col col-12 header__right">
+		 
+				 
 					
 					
 					
-					<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<nav class="header__right">
 					  <a class="header__logo" href="#"><img src="assets/svg/logo.svg"></a>
-					  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					  </button>
-					  <div class="collapse navbar-collapse header__nav" id="navbarNav">
+					  
+					  
 						<ul class="navbar-nav">
 						    <li><a href="">About me</a></li>
 							<li><a href="">Relationships </a></li>
@@ -38,22 +36,15 @@
 							<li style="display: none;"><a href="">Sign Out</a></li>
 						</ul>
 						
-						<div class="header__user" >
-							<div class="">
-								<div class="header__user_name">Superstar</div>
-								<div class="header__user_email">Superstar@gmail.com</div>
-							</div>
-							<div class="header__user_avatar"><img src="assets/images/user-superstar-2x.jpg" alt="Avatar"></div>
-							<div class="header__user_icon"><a href=""><i class="demo-icon icon-sign-out"></i></a></div>
-						</div>
-					  </div>
+						 
+					 
 					</nav>
 
 					 
-				</div>
+				 
 
 		
-			</div>
+			
 		</div>
 
 	</header>
@@ -63,19 +54,19 @@
 	<section class="main">
 		<div class="container">
 			<div class="row">
-				<div class="col-12 col-md-6">
+				<div class=" " style=" padding-left: 31px;">
 					<h1 class="main__title">Test assignment for Frontend Developer position</h1>
 					<div class="main__description">
-					<p>We kindly remind you that your test assignment should be submitted as a link to github/bitbucket repository. Please be patient, we consider and respond to every application that meets minimum requirements. We look forward to your submission. <br>Good luck!</p>
+					<p>We kindly remind you that your test assignment should be submitted as a link to github/bitbucket repository. Please be patient, we consider and respond to every application that meets minimum requirements. We look forward to your submission. Good luck! The photo has to scale in the banner area on the different screens</p>
 					 
-					<div class="btn btn-orange">Sign Up</div>
+					
 					</div>
+
+					<div class="btn btn-orange">Sing up now</div>
 					
 					 
 				</div>
-				<div class="col-12 col-md-6">
-					
-				</div>
+				 
 					
 			</div>	
 
@@ -88,74 +79,25 @@
 	
 	<section class="acquainted">
 		<div class="container">
-			<h2>Let's get acquainted</h2>
+			<h1>Let's get acquainted</h1>
 			<div class="row">
-				<div class="col col-12 col-md-4"><img src="assets/svg/man-mobile.svg"></div>
-				<div class="col col-12 col-md-8 acquainted__description">
-					<h3>I am cool frontend developer</h3>
-					<p>When real users have a slow experience on mobile, they're much less likely to find what they are looking for or purchase from you in the future. For many sites this equates to a huge missed opportunity, especially when more than half of visits are abandoned if a mobile page takes over 3 seconds to load.</p>
-					<p>Last week, Google Search and Ads teams announced two new speed initiatives to help improve user-experience on the web. </p>
-
-					<div class="acquainted__button">Sign Up</div>
+				<div class="col col-12 col-md-5"><img src="assets/svg/man-laptop-v1.svg"></div>
+				<div class="col col-12 col-md-7 acquainted__description">
+					<h2>I am cool frontend developer</h2>
+					<p>We will evaluate how clean your approach to writing CSS and Javascript code is. You can use any CSS and Javascript 3rd party libraries without any restriction.
+					</p>
+					<p>If 3rd party css/javascript libraries are added to the project via bower/npm/yarn you will get bonus points. If you use any task runner (gulp/webpack) you will get bonus points as well. Slice service directory page P​SD mockup​ into HTML5/CSS3. </p>
+					
+					<div class="acquainted__button">Sing up now</div>
 				</div>
 
 			</div>
 		</div>	
 	</section>
 
-	<section class="technology">
-		<div class="container">
-			<h2>About my relationships with<br> web-development</h2> 
-			<div class="row">
-				<div class="col-12 col-md-4">
-					<div class="technology__item">
-					<div class="technology__icon"><img src="assets/svg/html.svg"></div>
-					<h3 class="technology__title">I'm in love with HTML</h3>
-					<div class="technology__description">Hypertext Markup Language (HTML) is the standard markup language for creating web pages and web applications.</div>
-					</div>
-				</div>
-				<div class="col-12 col-md-4">
-					<div class="technology__item">
-					<div class="technology__icon"><img src="assets/svg/css.svg"></div>
-					<h3 class="technology__title">CSS is my best friend</h3>
-					<div class="technology__description">Cascading Style Sheets (CSS) 
-is a style sheet language used for describing the presentation of a document written in a markup language like HTML.</div>
-					</div>
-				</div>
-				<div class="col-12 col-md-4">
-					<div class="technology__item">
-					<div class="technology__icon"><img src="assets/svg/javascript.svg"></div>
-					<h3 class="technology__title">JavaScript is my passion</h3>
-					<div class="technology__description">JavaScript is a high-level, interpreted programming language. It is a language which is also characterized as dynamic, weakly typed, prototype-based and multi-paradigm.</div>
-					</div>
-				</div>
-				
-
-			</div>
-		</div>			
-	</section>
-
-	<section class="requirements">
-		<div class="container">
-			<h2>General requirements for the test task</h2> 
-			<div class="row">
-				<div class="col-6">
-					<p>Users want to find answers to their questions quickly and data shows that people really care about how quickly their pages load. The Search team announced speed would be a ranking signal for desktop searches in 2010 and as of this month (July 2018), page speed will be a ranking factor for mobile searches too.</p>
-
-					<p>If you're a developer working on a site, now is a good time to evaluate your performance using our speed tools. Think about how performance affects the user experience of your pages and consider measuring a variety of real-world user-centric performance metrics.</p>
-
-					<p>Are you shipping too much JavaScript? Too many images? Images and JavaScript are the most significant contributors to the page weight that affect page load time based on data from HTTP Archive and the Chrome User Experience Report - our public dataset for key UX metrics as experienced by Chrome users under real-world conditions.</p>
+ 
 
 
-
-				</div>
-				<div class="col-6">
-					<img src="assets/svg/man-laptop-v2.svg">		
-				</div>
-
-			</div>
-		</div>
-	</section>
 	
 	
 	
@@ -167,7 +109,7 @@ is a style sheet language used for describing the presentation of a document wri
 	
 		<section class="users">
 		<div class="container" >
-			<h2>Our cheerful users</h2> 
+			<h1>Our cheerful users</h1> 
 			<h5>Attention! Sorting users by registration date</h5> 
 
 			<div id="users"></div>
@@ -187,7 +129,7 @@ is a style sheet language used for describing the presentation of a document wri
 <section class="registration">
 
 <div class="container">
-	<h2>Register to get a work</h2> 
+	<h1>Register to get a work</h1> 
 			<h5>Attention! After successful registration and alert, update the list of users in the block from the top</h5> 
 
 	<div id="form">
@@ -224,12 +166,7 @@ is a style sheet language used for describing the presentation of a document wri
 			}
 			</style>
 
-			<script>
-		//	$( document ).ready(function() {
-		//		$('#1').attr('data-text','error');
-		//		$("#1:nth-child(0)").css({'color' : 'red'});
-		//	});
-			</script>
+			
 
 
 	
@@ -270,108 +207,11 @@ is a style sheet language used for describing the presentation of a document wri
 	<footer class="footer" style="background: #283593;">
 		<div class="container">
 			<div class="row footer__top">
-				<div class="footer__logo">
-					<img src="assets/svg/logo-footer.svg" style="height: 40px;">
-				</div>
-				<nav class="footer__nav">
-					<ul>
-						<li><a href="">About me</a></li>
-						<li><a href="">Relationships</a></li>
-						<li><a href="">Requirements  </a></li>
-						<li><a href="">Users</a></li> 
-						<li><a href="">Sign Up</a></li>
-					</ul>	
-				</nav>
-				
-			</div>
-			<div class="row">
-				<div class="col col-4">
-					<div class="footer__contacts">
-						<i class="demo-icon icon-mail">&#xe80a;</i>work.of.future@gmail.com<br>
-						<i class="demo-icon icon-phone">&#xe80b;</i>+38 (050) 789 24 98 <br>
-						<i class="demo-icon icon-cellphone">&#xe804;</i>+38 (095) 556 08 45
-					</div>
-				</div>	
-
-				<div class="col col-2">
-					<div class="footer__widget">
-						<ul>
-							<li><a href="">News</a></li>
-							<li><a href="">Blog</a></li>
-							<li><a href="">Partners</a></li>
-							<li><a href="">Shop</a></li>
-						</ul>	
-					</div>			
-				</div>	
-
-				<div class="col col-2">
-					<div class="footer__widget">
-						<ul>
-							<li><a href="">Overview</a></li>
-							<li><a href="">Design</a></li>
-							<li><a href="">Code</a></li>
-							<li><a href="">Collaborate</a></li>
-						</ul>	
-					</div>			
-				</div>					
-
-				<div class="col col-2">
-					<div class="footer__widget">
-						<ul>
-							<li><a href="">Tutorials</a></li>
-							<li><a href="">Resources</a></li>
-							<li><a href="">Guides</a></li>
-							<li><a href="">Examples</a></li>
-						</ul>	
-					</div>			
-				</div>	
-
-				<div class="col col-2">
-					<div class="footer__widget">
-						<ul>
-							<li><a href="">FAQ</a></li>
-							<li><a href="">Terms</a></li>
-							<li><a href="">Conditions</a></li>
-							<li><a href="">Help</a></li>
-						</ul>	
-					</div>			
-				</div>	
-
-
-
-			</div>
-
-			<div class="row footer__bottom">
-				<div class="footer__copyright">© abz.agency specially for the test task</div>
-				<div class="footer__social">
-						<ul>
-						
-							<li><a href="#"><i class="demo-icon icon-facebook"></i></a></li>
-							<li><a href="#"><i class="demo-icon icon-linkedin"></i></a></li>
-							<li><a href="#"><i class="demo-icon icon-instagram"></i></a></li>
-							<li><a href="#"><i class="demo-icon icon-twitter"></i></a></li>
-							<li><a href="#"><i class="demo-icon icon-pinterest"></i></a></li>
-
-							
-						</ul>	
-					
-				</div>	
+			
 				
 				
-
-<!-- <div class="inputfile-box">
-  <input type="file" id="file" class="inputfile" >
-  <label for="file">
-    <span id="file-name" class="file-box">123</span>
-    <span class="file-button">
-      <i class="fa fa-upload" aria-hidden="true"></i>
-      Select File
-    </span>
-  </label>
-</div> -->
-
-
 			</div>
+			 
 
 		</div>	
 	</footer>	
